@@ -9,7 +9,7 @@
 0. Clone the project
 1. Run `cp .env.example .env` from the main root level [.evn.example](.env.example)
 2. Run `cp www/.env.example www/.env` from the main root level [www/.evn.example](.env.example)
-3. Register to https://exchangeratesapi.io/ and create API key, put in here `www/.wnv` the key `API_EXCHANGE_KEY`
+3. Register to https://exchangeratesapi.io/ and create API key, put in here `www/.env` the key `API_EXCHANGE_KEY`
 4. Run `docker-compose up -d`
 
 ### How to run app
