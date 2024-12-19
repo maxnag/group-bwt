@@ -24,7 +24,7 @@ services:
 
 networks:
     static-network:
-        name: ${API_HOST}_static-network
+        name: bwt_static-network
         ipam:
             driver: default
             config:

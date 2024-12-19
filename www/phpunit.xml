@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         cacheDirectory="./code-coverage/phpunit.cache/"
          bootstrap="vendor/autoload.php"
          colors="true"
+         columns="140"
 >
     <testsuites>
         <testsuite name="Unit">
             <directory>tests/Unit</directory>
         </testsuite>
     </testsuites>
+    <coverage ignoreDeprecatedCodeUnits="true">
+        <report>
+            <html outputDirectory="code-coverage/unit" lowUpperBound="60" highLowerBound="80"/>
+        </report>
+    </coverage>
     <source>
         <include>
             <directory>src</directory>
         </include>
+        <exclude>
+            <file>src/app.php</file>
+            <directory suffix="Interface.php">src</directory>
+        </exclude>
     </source>
     <php>
         <env name="APP_ENV" value="testing"/>
+        <env name="API_EXCHANGE_KEY" value="fake-api-key"/>
     </php>
 </phpunit>

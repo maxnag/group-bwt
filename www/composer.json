@@ -24,7 +24,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^8.3"
+        "php": "^8.3",
+        "vlucas/phpdotenv": "^5.6"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.65",
@@ -34,7 +35,11 @@
         "squizlabs/php_codesniffer": "^3.11"
     },
     "scripts": {
+        "post-install-cmd": [
+            "npm install"
+        ],
         "format": "prettier -u --w --config=.prettierrc ./src/**/* ./tests/**/*",
-        "phpstan": "phpstan analyse -c phpstan.neon > phpstan.log"
+        "phpstan": "phpstan analyse -c phpstan.neon > phpstan.log",
+        "test-unit": "/var/www/vendor/phpunit/phpunit/phpunit --testsuite=Unit --bootstrap /var/www/vendor/autoload.php --configuration /var/www/phpunit.xml"
     }
 }

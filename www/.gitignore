@@ -1,6 +1,6 @@
+code-coverage
 node_modules
-phpstancache
-phpstan.log
 phpcs.log
+phpstan.log
+phpstancache
 vendor
-.php-cs-fixer.cache

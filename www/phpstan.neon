@@ -4,9 +4,5 @@ parameters:
     level: 6
     tmpDir: phpstancache
     paths:
-        - app
-        - database
-        - routes
+        - src
         - tests
-    excludePaths:
-        - database/migrations

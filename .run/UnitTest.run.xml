@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="UnitTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+    <CommandLine workingDirectory="$PROJECT_DIR$/www">
+      <PhpTestInterpreterSettings>
+        <option name="interpreterName" value="group-bwt/php:8.3-fpm" />
+      </PhpTestInterpreterSettings>
+    </CommandLine>
+    <TestRunner class="Tests\Unit\CalculateCommissionTest" configuration_file="$PROJECT_DIR$/www/phpunit.xml" directory="$PROJECT_DIR$/www/tests/Unit" file="$PROJECT_DIR$/www/tests/Unit/CalculateCommissionTest.php" method="testCalculation" options="--testsuite=Unit" use_alternative_configuration_file="true" />
+    <method v="2" />
+  </configuration>
+</component>
