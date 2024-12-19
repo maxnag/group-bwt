@@ -1,0 +1,31 @@
+services:
+    php:
+        build:
+            args:
+                DEBUG_HOST_IP: ${DEBUG_HOST_IP}
+            context: ./docker
+            dockerfile: Dockerfile
+        image: group-bwt/php:8.3-fpm
+        container_name: group-bwt-task-php8.3-fpm
+        restart: unless-stopped
+        environment:
+            TERM: xterm
+            XDEBUG_MODE: ${XDEBUG_MODE}
+            XDEBUG_CONFIG: profiler_output_name=cachegrind.out.%R.log client_host=${DEBUG_HOST_IP}
+        working_dir: /var/www/
+        volumes:
+            - ./www/:/var/www/:rw
+
+            - ./docker/php.ini:/etc/php/8.3/fpm/php.ini:rw
+            - ./docker/php-fpm.conf:/etc/php/8.3/fpm/php-fpm.conf:rw
+        networks:
+            static-network:
+                ipv4_address: 173.25.0.2
+
+networks:
+    static-network:
+        name: ${API_HOST}_static-network
+        ipam:
+            driver: default
+            config:
+                - subnet: 173.25.0.0/16

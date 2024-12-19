@@ -1,0 +1,6 @@
+node_modules
+phpstancache
+phpstan.log
+phpcs.log
+vendor
+.php-cs-fixer.cache
