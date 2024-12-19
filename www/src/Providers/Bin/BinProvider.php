@@ -8,7 +8,7 @@ use GroupBwt\TestTask\Providers\AbstractProvider;
 /**
  * BIN list provider
  */
-class ListProvider extends AbstractProvider implements BinProviderInterface
+class BinProvider extends AbstractProvider implements BinProviderInterface
 {
     /**
      * Http Handler

@@ -3,13 +3,13 @@
 namespace Tests\Unit\Providers\Bin;
 
 use Exception;
-use GroupBwt\TestTask\Providers\Bin\ListProvider;
+use GroupBwt\TestTask\Providers\Bin\BinProvider;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionMethod;
 
-class ListProviderTest extends TestCase
+class BinProviderTest extends TestCase
 {
     /**
      * Test getData with valid data
@@ -22,7 +22,7 @@ class ListProviderTest extends TestCase
     {
         $mockHandler = fn($url) => '{"test": "data"}'; // Mock HTTP response
 
-        $listProvider = new ListProvider($mockHandler);
+        $listProvider = new BinProvider($mockHandler);
 
         $reflection = new ReflectionMethod($listProvider, 'getData');
         $reflection->setAccessible(true);
@@ -46,7 +46,7 @@ class ListProviderTest extends TestCase
 
         $mockHandler = fn($url) => false;
 
-        $listProvider = new ListProvider($mockHandler);
+        $listProvider = new BinProvider($mockHandler);
 
         $reflection = new ReflectionMethod($listProvider, 'getData');
         $reflection->setAccessible(true);
@@ -63,7 +63,7 @@ class ListProviderTest extends TestCase
      */
     public function testGetBinValidData(): void
     {
-        $mockProvider = $this->getMockBuilder(ListProvider::class)
+        $mockProvider = $this->getMockBuilder(BinProvider::class)
             ->onlyMethods(['getData'])
             ->getMock();
 
@@ -98,7 +98,7 @@ class ListProviderTest extends TestCase
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('JSON is not valid for BINs.');
 
-        $mockProvider = $this->getMockBuilder(ListProvider::class)
+        $mockProvider = $this->getMockBuilder(BinProvider::class)
             ->onlyMethods(['getData'])
             ->getMock();
 
@@ -122,7 +122,7 @@ class ListProviderTest extends TestCase
      */
     public function testGetBinHandlesMissingCountryAlpha2Code(): void
     {
-        $mockProvider = $this->getMockBuilder(ListProvider::class)
+        $mockProvider = $this->getMockBuilder(BinProvider::class)
             ->onlyMethods(['getData'])
             ->getMock();
 
