@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="cli debugger" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/www/src/app.php" scriptParameters="src/example.txt">
+    <CommandLine parameters="-d xdebug.profiler_enable=true -d xdebug.dump_instr=yes -d xdebug.collect-jumps=yes" workingDirectory="$PROJECT_DIR$/www">
+      <PhpTestInterpreterSettings>
+        <option name="interpreterName" value="group-bwt/php:8.3-fpm" />
+      </PhpTestInterpreterSettings>
+    </CommandLine>
+    <method v="2" />
+  </configuration>
+</component>

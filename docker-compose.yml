@@ -15,6 +15,7 @@ services:
         working_dir: /var/www/
         volumes:
             - ./www/:/var/www/:rw
+            - ./www/tmp/xdebug:/tmp/xdebug:rw
 
             - ./docker/php.ini:/etc/php/8.3/fpm/php.ini:rw
             - ./docker/php-fpm.conf:/etc/php/8.3/fpm/php-fpm.conf:rw

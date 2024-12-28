@@ -16,6 +16,23 @@ abstract class AbstractProvider
     protected string $countryAlpha2Code = '';
 
     /**
+     * Http Handler
+     *
+     * @var callable
+     */
+    protected $httpHandler;
+
+    /**
+     * Constructor to set custom HTTP handler
+     *
+     * @param callable|null $httpHandler
+     */
+    public function __construct(callable $httpHandler = null)
+    {
+        $this->httpHandler = $httpHandler ?: 'file_get_contents';
+    }
+
+    /**
      * Checking belonging to EU countries
      *
      * works only with ISO 3166-1 alpha-2 format
@@ -54,7 +71,7 @@ abstract class AbstractProvider
             'SK',
         ];
 
-        return in_array($this->countryAlpha2Code, $euCountries);
+        return in_array(strtoupper($this->countryAlpha2Code), $euCountries);
     }
 
     /**

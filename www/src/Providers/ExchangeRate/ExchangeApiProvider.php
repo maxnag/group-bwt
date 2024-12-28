@@ -20,23 +20,6 @@ class ExchangeApiProvider extends AbstractProvider implements ExchangeProviderIn
     protected stdClass|null $ratesData;
 
     /**
-     * Http Handler
-     *
-     * @var callable
-     */
-    private $httpHandler;
-
-    /**
-     * Constructor to set custom HTTP handler
-     *
-     * @param callable|null $httpHandler
-     */
-    public function __construct(callable $httpHandler = null)
-    {
-        $this->httpHandler = $httpHandler ?: 'file_get_contents';
-    }
-
-    /**
      * Get data
      *
      * @param string $url
@@ -67,9 +50,10 @@ class ExchangeApiProvider extends AbstractProvider implements ExchangeProviderIn
      */
     public function getRates(): self
     {
+        // we cannot cache here due to rate changes at any time
         $rawData = $this->getData('https://api.exchangeratesapi.io/v1/latest?access_key=[apiKey]&format=1');
 
-        // it remains here due to API request limitation
+        // it remains here due to API request limitations, for debugging purposes
         // $rawData = '{ "rates": { "USD": 1.1, "EUR": 1, "JPY": 1.34, "GBP": 0.88 } }';
 
         $this->ratesData = json_decode($rawData);

@@ -24,15 +24,20 @@ RUN apt-get update \
     && npm install --global npm@latest \
     && npm install --global prettier @prettier/plugin-php \
     && apt-get -y install php8.3 php8.3-cli php8.3-common php8.3-curl php8.3-gd php8.3-mbstring php8.3-mysql php8.3-opcache php8.3-readline php8.3-xml php8.3-fpm php8.3-bcmath php8.3-intl php8.3-xmlrpc php8.3-xsl php8.3-zip php8.3-memcached php8.3-xdebug php8.3-phpdbg php-pear graphviz \
+    # if you need xhprof uncomment 2 lines below
+    && apt-get -y install apt php8.3-xhprof \
+    && echo "xhprof.output_dir=/tmp/xhprof" >> /etc/php/8.3/mods-available/xhprof.ini \
     && apt-get -y install mariadb-client libsqlite3-dev libsqlite3-0 telnet \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && chmod +x /usr/local/bin/composer  \
     && echo "zend_extension=$(find /usr/lib/php/20230831 -name xdebug.so)" > /etc/php/8.3/mods-available/xdebug.ini \
-    && echo "xdebug.mode=debug,develop,coverage" >> /etc/php/8.3/mods-available/xdebug.ini \
+    && echo "xdebug.mode=profile,debug,develop,coverage" >> /etc/php/8.3/mods-available/xdebug.ini \
     && echo "xdebug.output_dir = /tmp/xdebug/" >> /etc/php/8.3/mods-available/xdebug.ini \
     && echo "xdebug.idekey=PHPSTORM" >> /etc/php/8.3/mods-available/xdebug.ini \
+    && echo "xdebug.client_port=9003" >> /etc/php/8.3/mods-available/xdebug.ini \
     && echo "xdebug.client_host=$DEBUG_HOST_IP" >> /etc/php/8.3/mods-available/xdebug.ini \
     && echo "xdebug.start_with_request=yes" >> /etc/php/8.3/mods-available/xdebug.ini \
     && echo "xdebug.log_level=0" >> /etc/php/8.3/mods-available/xdebug.ini \
+    && echo "xdebug.profiler_output_name=cachegrind.out.%p.log" >> /etc/php/8.3/mods-available/xdebug.ini \
     && echo "xdebug.file_link_format=phpstorm://open?%f:%l" >> /etc/php/8.3/mods-available/xdebug.ini \
     && mkdir /tmp/xdebug/ \
     && mkdir /tmp/xhprof/ \

@@ -19,9 +19,9 @@ class TransactionEntity
     /**
      * Amount
      *
-     * @var int
+     * @var float
      */
-    private int $amount;
+    private float $amount;
 
     /**
      * Currency
@@ -41,11 +41,11 @@ class TransactionEntity
      * Construct
      *
      * @param int $bin
-     * @param int $amount
+     * @param float $amount
      * @param string $currency
      * @param bool $isEU
      */
-    public function __construct(int $bin, int $amount, string $currency, bool $isEU)
+    public function __construct(int $bin, float $amount, string $currency, bool $isEU)
     {
         $this->bin = $bin;
         $this->amount = $amount;
@@ -66,9 +66,9 @@ class TransactionEntity
     /**
      * Get amount
      *
-     * @return int
+     * @return float
      */
-    public function getAmount(): int
+    public function getAmount(): float
     {
         return $this->amount;
     }

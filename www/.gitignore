@@ -4,3 +4,4 @@ phpcs.log
 phpstan.log
 phpstancache
 vendor
+tmp

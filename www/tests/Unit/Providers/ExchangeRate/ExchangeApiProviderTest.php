@@ -22,7 +22,7 @@ class ExchangeApiProviderTest extends TestCase
      */
     public function testGetDataReturnsValidData(): void
     {
-        $mockHandler = function ($url) {
+        $mockHandler = function () {
             return '{"rates": {"USD": 1.1, "EUR": 1}}';
         };
 

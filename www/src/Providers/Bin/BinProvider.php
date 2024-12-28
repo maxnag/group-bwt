@@ -11,23 +11,6 @@ use GroupBwt\TestTask\Providers\AbstractProvider;
 class BinProvider extends AbstractProvider implements BinProviderInterface
 {
     /**
-     * Http Handler
-     *
-     * @var callable
-     */
-    private $httpHandler;
-
-    /**
-     * Constructor to set custom HTTP handler
-     *
-     * @param callable|null $httpHandler
-     */
-    public function __construct(callable $httpHandler = null)
-    {
-        $this->httpHandler = $httpHandler ?: 'file_get_contents';
-    }
-
-    /**
      * Get data
      *
      * @param string $url
@@ -58,9 +41,11 @@ class BinProvider extends AbstractProvider implements BinProviderInterface
      */
     public function getBin(int $bin): self
     {
+        // the result is better to cache cause we have API request limitation
+        // TODO
         $rawData = $this->getData("https://lookup.binlist.net/$bin");
 
-        // it remains here due to API request limitation
+        // it remains here due to API request limitations, for debugging purposes
         /*$rawData = '{
           "number": {
             "length": 16,
