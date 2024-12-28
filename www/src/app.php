@@ -8,6 +8,14 @@ use GroupBwt\TestTask\Providers\Bin\BinProvider;
 use GroupBwt\TestTask\Providers\ExchangeRate\ExchangeApiProvider;
 use GroupBwt\TestTask\Transaction;
 
+if (empty($argv[1])) {
+    exit('Please, provide a file path after the script' . PHP_EOL);
+}
+
+if (file_exists(__DIR__ . '/../' . $argv[1]) === false) {
+    exit("The file $argv[1] doesn't exist" . PHP_EOL);
+}
+
 // env vars
 $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();

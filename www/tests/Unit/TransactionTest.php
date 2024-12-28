@@ -73,7 +73,7 @@ final class TransactionTest extends TestCase
         $calculator = new Transaction(
             new CalculateCommission($this->getMockExchangeProvider($rateEntity)),
             $this->getMockBinProvider(true),
-            'example.txt',
+            'src/example.txt',
         );
 
         $this->assertInstanceOf(CalculateCommission::class, $calculator->getCalculationCommissionObject());

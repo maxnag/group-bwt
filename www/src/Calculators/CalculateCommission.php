@@ -48,7 +48,7 @@ class CalculateCommission implements CalculateCommissionInterface
             $this->nonEuRate = $_ENV['NON_EU_RATE'] ?? throw new Exception('Non EU rate is not set');
             $this->rates = $exchangeApiProvider->getRates();
         } catch (Exception $e) {
-            $this->result = [$e->getMessage()];
+            exit($e->getMessage() . PHP_EOL);
         }
     }
 

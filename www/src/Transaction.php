@@ -27,7 +27,7 @@ class Transaction implements TransactionInterface
         try {
             $this->getTransactions();
         } catch (Exception $e) {
-            echo $e->getMessage();
+            exit($e->getMessage() . PHP_EOL);
         }
     }
 
@@ -75,7 +75,7 @@ class Transaction implements TransactionInterface
                 continue;
             }
 
-            $this->calculateCommission->calculate(new TransactionEntity(
+            $this->getCalculationCommissionObject()->calculate(new TransactionEntity(
                 (int) $decodedData->bin,
                 (int) $decodedData->amount,
                 (string) $decodedData->currency,

@@ -73,30 +73,6 @@ class CalculateCommissionTest extends TestCase
     }
 
     /**
-     * Get envs
-     *
-     * @return void
-     * @throws Exception
-     */
-    public function testCheckEnvs(): void
-    {
-        $_ENV['EU_RATE'] = null;
-        $_ENV['NON_EU_RATE'] = null;
-        $calculator = new CalculateCommission($this->createMock(ExchangeProviderInterface::class));
-        $result = $calculator->getResult();
-
-        $this->assertCount(1, $result);
-        $this->assertEquals('EU rate is not set', $result[0]);
-
-        $_ENV['EU_RATE'] = 0.1;
-        $calculator = new CalculateCommission($this->createMock(ExchangeProviderInterface::class));
-        $result = $calculator->getResult();
-
-        $this->assertCount(1, $result);
-        $this->assertEquals('Non EU rate is not set', $result[0]);
-    }
-
-    /**
      * Get result
      *
      * @return void
